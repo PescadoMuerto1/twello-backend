@@ -1,14 +1,14 @@
-import {dbService} from '../../services/db.service.js'
-import {logger} from '../../services/logger.service.js'
+import { dbService } from '../../services/db.service.js'
+import { logger } from '../../services/logger.service.js'
 import mongodb from 'mongodb'
-const {ObjectId} = mongodb
+const { ObjectId } = mongodb
 
 async function getMiniBoards() {
     try {
         const collection = await dbService.getCollection('board')
         var boards = await collection.find().toArray()
 
-        return boards
+        return boards.map(board => ({ _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred }))
     } catch (err) {
         logger.error('cannot find boards', err)
         throw err
@@ -18,7 +18,7 @@ async function getMiniBoards() {
 async function getById(boardId) {
     try {
         const collection = await dbService.getCollection('board')
-        const board =  await collection.findOne({ _id: ObjectId(boardId) })
+        const board = await collection.findOne({ _id: ObjectId(boardId) })
         board.createdAt = ObjectId(board._id).getTimestamp()
 
         return board
@@ -59,7 +59,8 @@ async function update(board) {
         const collection = await dbService.getCollection('board')
         await collection.updateOne({ _id: ObjectId(board._id) }, { $set: boardToSave })
         return board
-    } catch (err) {``
+    } catch (err) {
+        ``
         logger.error(`cannot update board ${board.id}`, err)
         throw err
     }
