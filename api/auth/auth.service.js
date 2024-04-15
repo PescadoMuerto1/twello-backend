@@ -19,15 +19,15 @@ async function login(email, password) {
     const user = await userService.getByEmail(email)
     if (!user) return Promise.reject('Invalid email or password')
     // TODO: un-comment for real login
-    // const match = await bcrypt.compare(password, user.password)
-    // if (!match) return Promise.reject('Invalid username or password')
+    const match = await bcrypt.compare(password, user.password)
+    if (!match) return Promise.reject('Invalid username or password')
 
     delete user.password
     user._id = user._id.toString()
     return user
 }
 
-async function signup(email, { username, password, fullname, imgUrl }) {
+async function signup({email, username, password, fullname, imgUrl }) {
     const saltRounds = 10
 
     logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
@@ -35,7 +35,7 @@ async function signup(email, { username, password, fullname, imgUrl }) {
 
     const userExist = await userService.getByEmail(email)
     if (userExist) return Promise.reject('Email already taken')
-
+    console.log(userExist);
     const hash = await bcrypt.hash(password, saltRounds)
     return userService.add({email, username, password: hash, fullname, imgUrl })
 }
