@@ -14,6 +14,7 @@ app.use(express.json())
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve('public')))
+    console.log('public');
 } else {
     const corsOptions = {
         origin: [   'http://127.0.0.1:3000',
@@ -23,6 +24,7 @@ if (process.env.NODE_ENV === 'production') {
                 ],
         credentials: true
     }
+    console.log(corsOptions);
     app.use(cors(corsOptions))
 }
 
@@ -32,7 +34,7 @@ import { boardRoutes } from './api/board/board.routes.js'
 
 // routes
 import { setupAsyncLocalStorage } from './middlewares/setupAls.middleware.js'
-app.all('*', setupAsyncLocalStorage)
+// app.all('*', setupAsyncLocalStorage)
 
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
