@@ -54,6 +54,7 @@ async function update(board) {
     try {
         const boardToSave = {
             title: board.title,
+            style: board.style,
             isStarred: board.isStarred,
             archivedAt: board.archivedAt,
             createdById: board.createdById,
