@@ -70,7 +70,7 @@ async function update(user) {
         // peek only updatable properties
         const userToSave = {
             _id: ObjectId(user._id), // needed for the returnd obj
-            fullname: user.fullname,
+            fullName: user.fullName,
             score: user.score,
         }
         const collection = await dbService.getCollection('user')
@@ -88,7 +88,7 @@ async function add(user) {
         const userToAdd = {
             username: user.username,
             password: user.password,
-            fullname: user.fullname,
+            fullName: user.fullName,
             imgUrl: user.imgUrl,
             email: user.email
         }
@@ -110,7 +110,7 @@ function _buildCriteria(filterBy) {
                 username: txtCriteria
             },
             {
-                fullname: txtCriteria
+                fullName: txtCriteria
             }
         ]
     }
