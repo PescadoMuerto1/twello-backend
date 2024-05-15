@@ -2,6 +2,9 @@
 
 A full-stack web application that replicates the core functionalities of "Trello" app, developed by Yifat Regensberg, Moshe Benlolo and Roi Doron.
 
+**You can access the deployed application at:** https://twello-bk3n.onrender.com/
+**Frontend Repo**: https://github.com/yifatre/Twello
+
 <img src="https://res.cloudinary.com/di5cspvle/image/upload/v1715775399/Screenshot_2024-05-15_141637_ych7ls.png">
 <img src="https://res.cloudinary.com/di5cspvle/image/upload/v1715775707/Screenshot_2024-05-15_152056_ddhaua.png">
 <img src="https://res.cloudinary.com/di5cspvle/image/upload/v1715775399/Screenshot_2024-05-15_141535_wwuclw.png">
@@ -10,7 +13,6 @@ A full-stack web application that replicates the core functionalities of "Trello
 Built with :
 
 ![Tech](https://skillicons.dev/icons?i=js,html,css,sass,react,redux,mongodb,nodejs,express,vite,git,&perline=11)
-
 
 
 ## Table of Contents
